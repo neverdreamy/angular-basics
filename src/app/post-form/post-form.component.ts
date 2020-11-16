@@ -9,7 +9,6 @@ import {Post} from '../app.component';
 export class PostFormComponent implements OnInit {
 
   @Output() outputAdd: EventEmitter<Post> = new EventEmitter<Post>();
-  @Output() outputRemove: EventEmitter<Post> = new EventEmitter<Post>();
 
   @ViewChild('titleInput') inputRef: ElementRef;
 
@@ -25,18 +24,14 @@ export class PostFormComponent implements OnInit {
     if (this.title.trim() && this.text.trim()) {
       const myPost: Post = {
         title: this.title,
-        text: this.text
+        text: this.text,
+        length: this.text.trim().length
       };
 
       console.log('addPost');
       this.outputAdd.emit(myPost);
       this.title = this.text = '';
     }
-  }
-
-  removePostBtn() {
-    console.log('removePost');
-    this.outputRemove.emit();
   }
 
   focusTitle() {

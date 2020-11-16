@@ -1,5 +1,6 @@
 <div class="card">
   <h2>{{myPost.title}}</h2>
   <p>{{myPost.text}}</p>
-  <small>{{myPost.text.trim().length}} симв.</small>
+  <small>{{myPost.length}} симв.</small>
+  <button class="btn" (click)="removePost(myPost)">x</button>
 </div>

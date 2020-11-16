@@ -3,7 +3,7 @@
 
   <app-post-form
     (outputAdd)="updatePosts($event)"
-    (outputRemove)="removePost()"
+
   ></app-post-form>
 
   <hr />
@@ -11,6 +11,7 @@
   <app-post
     *ngFor="let p of posts"
     [myPost]="p"
+    (removeHandler)="removePost($event)"
   >
   </app-post>
 
