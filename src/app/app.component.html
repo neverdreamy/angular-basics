@@ -1,18 +1,33 @@
 <div class="container">
-  <h1>Angular Components</h1>
+  <h1>Angular Directives</h1>
 
-  <app-post-form
-    (outputAdd)="updatePosts($event)"
+  <p [appStyle]="'red'" [dStyles]="{border: '1px solid blue', borderRadius: '5px'}">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, pariatur.
+  </p>
 
-  ></app-post-form>
+  <p [appStyle]="'blue'" [dStyles]="{border: '1px solid red', fontWeight: 'bold', borderRadius: '15px'}">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, unde.
+  </p>
 
-  <hr />
+  <button class="btn" (click)="isVisible = !isVisible">Toggle</button>
 
-  <app-post
-    *ngFor="let p of posts"
-    [myPost]="p"
-    (removeHandler)="removePost($event)"
-  >
-  </app-post>
+<!--  <div *ngIf="isVisible" class="wrap">-->
+<!--    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate deserunt inventore, maxime minus nihil recusandae tenetur totam velit.</p>-->
+<!--  </div>-->
 
+<!--  <ng-template>-->
+<!--    <div *ngIf="isVisible" class="wrap">-->
+<!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate deserunt inventore, maxime minus nihil recusandae tenetur totam velit.</p>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+
+<!--  <div class="wrap" *appIfnot="!isVisible">-->
+<!--    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate deserunt inventore, maxime minus nihil recusandae tenetur totam velit.</p>-->
+<!--  </div>-->
+
+  <ng-template [appIfnot]="!isVisible">
+    <div class="wrap">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate deserunt inventore, maxime minus nihil recusandae tenetur totam velit.</p>
+    </div>
+  </ng-template>
 </div>
