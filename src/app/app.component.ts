@@ -34,7 +34,7 @@ export class AppComponent {
 
   promise: Promise<string> = new Promise<string>(resolve => {
     setTimeout(() => {
-      resolve('Promise resolved')
+      resolve('Promise resolved');
     }, 6000);
   });
 
