@@ -1,10 +1,5 @@
 import {Component} from '@angular/core';
-import {Observable} from 'rxjs';
-
-export interface Post {
-  title: string;
-  text: string;
-}
+import {Subscription, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,51 +8,23 @@ export interface Post {
 })
 
 export class AppComponent {
-  num = 2.51234;
-  str = 'hello world';
-  date: Date = new Date();
-  float = 0.42;
 
-  obj = {
-    a: 1,
-    b: {
-      c: 2,
-      d: {
-        e: 3,
-        f: 4
-      }
-    }
-  };
+  sub: Subscription;
+  stream$: Subject<number> = new Subject<number>();
+  counter = 0;
 
-  search = '';
-  searchField = 'title';
-
-  promise: Promise<string> = new Promise<string>(resolve => {
-    setTimeout(() => {
-      resolve('Promise resolved');
-    }, 6000);
-  });
-
-  myDate: Observable<Date> = new Observable( obs => {
-    setInterval(() => {
-      obs.next(new Date());
-    }, 1000);
-  });
-
-  posts: Post[] = [
-    {title: 'Game', text: 'Game of the year'},
-    {title: 'Film', text: 'Film of the year'},
-    {title: 'Web', text: 'HTML + CSS + JS'}
-  ];
-
-  addPost() {
-    this.posts.unshift({
-      title: 'Post title',
-      text: 'Post text'
+  constructor() {
+    this.stream$.subscribe(value => {
+      console.log('Subscribe', value);
     });
   }
 
-  removePost() {
-    this.posts.shift();
+  stop() {
+    this.sub.unsubscribe();
+  }
+
+  next() {
+    this.counter++;
+    this.stream$.next(this.counter);
   }
 }
