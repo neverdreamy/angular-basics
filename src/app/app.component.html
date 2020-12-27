@@ -15,7 +15,10 @@
     <button class="btn" (click)="localCounterService.decrease()">-</button>
   </div>
 
-  <hr>
+      <button class="btn" type="button" (click)="setCapital()">Выбрать столицу</button>
+    </div>
 
-  <app-counter></app-counter>
+    <button class="btn" type="submit" [disabled]="form.invalid || form.pending">Отправить</button>
+
+  </form>
 </div>
