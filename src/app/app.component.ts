@@ -50,9 +50,4 @@ export class AppComponent implements OnInit {
 
     this.form.patchValue({address: {city}});
   }
-
-  addSkill() {
-    const control = new FormControl('', Validators.required);
-    (this.form.get('skills') as FormArray).push(control);
-  }
 }
