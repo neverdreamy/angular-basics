@@ -1,24 +1,73 @@
 <div class="container">
-  <h1>Angular Services</h1>
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Angular Forms</h1>
 
-  <div class="card">
-    <h2>App Counter: {{appCounterService.counter}}</h2>
+    <div class="form-control">
+      <label>Email</label>
+      <input type="text" placeholder="Email" formControlName="email">
+      <div
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('email').errors.required">
+          Поле email не может быть пустым
+        </small>
 
-    <button class="btn" (click)="appCounterService.increase()">+</button>
-    <button class="btn" (click)="appCounterService.decrease()">-</button>
-  </div>
+        <small *ngIf="form.get('email').errors.email">
+          Введите корректный email
+        </small>
 
-  <div class="card">
-    <h2>Local Counter: {{localCounterService.counter}}</h2>
+        <small *ngIf="form.get('email').errors.restrictedEmail">
+          Email {{form.get('email').value}} запрещен
+        </small>
 
-    <button class="btn" (click)="localCounterService.increase()">+</button>
-    <button class="btn" (click)="localCounterService.decrease()">-</button>
-  </div>
+        <small *ngIf="form.get('email').errors.uniqEmail">
+          Email {{form.get('email').value}} занят
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label>Пароль</label>
+      <input type="password" placeholder="Пароль" formControlName="password">
+      <div
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('password').errors.required">
+          Поле password не может быть пустым
+        </small>
+
+        <small *ngIf="form.get('password').errors.minlength">
+          Длина пароля должна быть не менее {{form.get('password').errors.minlength.requiredLength}} символов
+        </small>
+      </div>
+    </div>
+
+    <div class="card" formGroupName="address">
+      <h2>Адрес</h2>
+
+      <div class="form-control">
+        <label>Страна</label>
+
+        <select formControlName="country">
+          <option value="ru">Россия</option>
+          <option value="ua">Украина</option>
+          <option value="by">Беларусь</option>
+        </select>
+      </div>
+
+      <div class="form-control">
+        <input type="text" formControlName="city" placeholder="Город">
+      </div>
 
       <button class="btn" type="button" (click)="setCapital()">Выбрать столицу</button>
     </div>
 
-    <button class="btn" type="submit" [disabled]="form.invalid || form.pending">Отправить</button>
+    <button class="btn" type="submit" [disabled]="form.invalid">Отправить</button>
 
   </form>
 </div>
+
+
+
